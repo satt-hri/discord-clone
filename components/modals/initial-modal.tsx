@@ -39,7 +39,6 @@ export const InitialModal = () => {
     setIsClient(true);
   }, []);
 
-
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
