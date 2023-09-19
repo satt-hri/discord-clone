@@ -3,6 +3,8 @@ import Image from "next/image";
 import { UploadDropzone } from "@/lib/uploadting";
 import "@uploadthing/react/styles.css";
 import { UploadFileResponse } from "uploadthing/client";
+
+
 interface FileUplaodProps {
   onChange: (url?: string) => void;
   value: string;
@@ -14,7 +16,7 @@ export const FileUplaod = ({ onChange, value, endpoint }: FileUplaodProps) => {
   if (value && fileType !== "pdf") {
     return (
       <div className="relative h-20 w-20">
-        <Image fill src={value} alt="Upload" className="rounded-full" />
+        <Image fill src={value} alt="Upload" className="rounded-full"   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"/>
         <button
           type="button"
           onClick={() => onChange("")}

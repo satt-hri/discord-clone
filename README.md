@@ -30,3 +30,12 @@
 # uploadting 
   [File Uploads](<https://docs.uploadthing.com/getting-started>)
    domainsの追加 
+
+# icon
+   https://lucide.dev/
+
+1  axios  and  uuid
+
+https://zenn.dev/tatsuyasusukida/articles/why-prisma-migrate-dev-fails-in-myql
+SHOW GRANTS FOR prisma_user@localhost;
+GRANT ALL PRIVILEGES ON `discord`.* TO `prisma_user`@`localhost`
