@@ -26,3 +26,7 @@
 # create profile
 
   `npx prisma studio`
+
+# uploadting 
+  [File Uploads](<https://docs.uploadthing.com/getting-started>)
+   domainsの追加 
