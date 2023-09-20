@@ -1,0 +1,28 @@
+Profile 模型：
+
+Profile 模型表示用户的个人资料信息。
+Profile 与 Server、Member 和 Channel 模型之间存在一对多关系。
+一个 Profile 可以关联多个 Server、Member 和 Channel。
+Server 模型：
+
+Server 模型表示一个服务器或群组。
+Server 与 Profile 模型之间存在一对多关系，其中 profileId 是外键。
+Server 也与 Member 和 Channel 模型之间存在一对多关系，每个服务器可以有多个成员和频道。
+Member 模型：
+
+Member 模型表示服务器中的成员。
+Member 与 Profile 模型之间存在一对多关系，其中 profileId 是外键。
+Member 与 Server 模型之间也存在一对多关系，其中 serverId 是外键。
+Channel 模型：
+
+Channel 模型表示服务器中的聊天频道。
+Channel 与 Profile 模型之间存在一对多关系，其中 profileId 是外键。
+Channel 与 Server 模型之间也存在一对多关系，其中 serverId 是外键。
+此外，还有两个枚举类型 MemberRole 和 ChannelType 用于定义成员的角色和频道的类型。
+
+总的来说，这个 Prisma schema 描述了一个类似于聊天或社交媒体平台的数据模型，其中包括用户个人资料、服务器、成员和频道，这些模型之间通过关联建立了关系，使您可以在应用程序中存储和查询相关数据。
+
+
+
+
+
