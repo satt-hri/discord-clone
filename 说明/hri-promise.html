@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Promise例</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+
+<body>
+    <section style="display: flex;justify-items:center;flex-direction: column;align-items: center;">
+        <h2>Promise&axios例</h2>
+        <form >
+            <label for="firstname">ID: </label>
+            <input type="text" name="id" id="id" value="isz01" required><br>
+            <label for="password">PWD: </label>
+            <input type="password" name="password" id="password" value="123" required>
+            <br>
+            <input type="button" id="login" onclick="run()" value="Login1" name="login">
+            <input type="button" id="login" onclick="run2()" value="Login2" name="login">
+        </form>
+        <hr>
+        <pre>
+            <h3>下記はJSの内容です。</h3>
+            <code>
+                const baseURL = "https://public-park5p.satt.jp/rest/api_sf-nakazato-isz-i1gp2023-backend"
+                const instance = axios.create();
+                console.log(instance);
+                // Add a request interceptor
+                instance.interceptors.request.use(function (config) {
+                    // Do something before request is sent
+                    alert("リクエスト共通:送信前にtokenを追加など処理")
+            
+                    if (typeof localStorage.getItem("isuz_token") !== 'undefined') {
+                        config.headers['X-CSRF-TOKEN'] = localStorage.getItem("isuz_token");
+                    }
+                    return config;
+                }, function (error) {
+                    // Do something with request error
+                    return Promise.reject(error);
+                });
+            
+                // Add a response interceptor
+                instance.interceptors.response.use(function (response) {
+                    alert("レスポンス共通:正しいDATAが取得できた")
+                    return Promise.resolve(response.data)
+                }, function (error) {
+                    alert("レスポンス共通:エラーメッセージなどを表示")
+                    return Promise.reject(error);
+                });
+            
+                <h5>//書き型1</h5>
+                const run = () => {
+                    alert("ローディング画面を開く")
+                    instance.post(baseURL + '/v1/sessions?role=admin', {
+                        id: document.getElementById('id').value,
+                        pw: document.getElementById('password').value
+                    }).then(function (response) {
+                        alert(JSON.stringify(response))
+                        console.log(response);
+            
+                    }).catch(function (error) {
+                        console.log(error);
+            
+                    }).finally((params) => {
+                        alert("ローディング画面を閉じる")
+                    })
+                }
+                <h5>//書き型2</h5>
+                async function run2(params) {
+                    alert("ローディング画面を開く")
+                    try {
+                        const rest = await instance.post(baseURL + '/v1/sessions?role=admin', {
+                            id: document.getElementById('id').value,
+                            pw: document.getElementById('password').value
+                        })
+                        alert(JSON.stringify(rest))
+                        alert('処理成功指定画面へ遷移')
+                        console.log(rest);
+                        // window.location.href = "https://www.yahoo.co.jp/"
+                    } catch (error) {
+            
+                    } finally {
+                        alert("ローディング画面を閉じる")
+                    }
+                }
+            </code>
+          </pre>
+    </section>
+    
+
+
+</body>
+<script>
+    const baseURL = "https://public-park5p.satt.jp/rest/api_sf-nakazato-isz-i1gp2023-backend"
+    const instance = axios.create();
+    console.log(instance);
+    // Add a request interceptor
+    instance.interceptors.request.use(function (config) {
+        // Do something before request is sent
+        alert("リクエスト共通:送信前にtokenを追加など処理")
+
+        if (typeof localStorage.getItem("isuz_token") !== 'undefined') {
+            config.headers['X-CSRF-TOKEN'] = localStorage.getItem("isuz_token");
+        }
+        return config;
+    }, function (error) {
+        // Do something with request error
+        return Promise.reject(error);
+    });
+
+    // Add a response interceptor
+    instance.interceptors.response.use(function (response) {
+        alert("レスポンス共通:正しいDATAが取得できた")
+        return Promise.resolve(response.data)
+    }, function (error) {
+        alert("レスポンス共通:エラーメッセージなどを表示")
+        return Promise.reject(error);
+    });
+
+    //書き型1
+    const run = () => {
+        alert("ローディング画面を開く")
+        instance.post(baseURL + '/v1/sessions?role=admin', {
+            id: document.getElementById('id').value,
+            pw: document.getElementById('password').value
+        }).then(function (response) {
+            alert(JSON.stringify(response))
+            console.log(response);
+            alert('処理成功指定画面へ遷移')
+        }).catch(function (error) {
+            console.log(error);
+
+        }).finally((params) => {
+            alert("ローディング画面を閉じる")
+        })
+    }
+    //書き型2
+    async function run2(params) {
+        alert("ローディング画面を開く")
+        try {
+            const rest = await instance.post(baseURL + '/v1/sessions?role=admin', {
+                id: document.getElementById('id').value,
+                pw: document.getElementById('password').value
+            })
+            alert(JSON.stringify(rest))
+            alert('処理成功指定画面へ遷移')
+            console.log(rest);
+            // window.location.href = "https://www.yahoo.co.jp/"
+        } catch (error) {
+
+        } finally {
+            alert("ローディング画面を閉じる")
+        }
+    }
+</script>
+
+</html>
