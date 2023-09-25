@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { NavigationAction } from "@/components/navigation/navigation-action";
 import { NavigationItem } from "@/components/navigation/navigation-item";
 import { Separator } from "@/components/ui/separator";
-import {ModeToggle} from "@/components/mode-toogle"
+import { ModeToggle } from "@/components/mode-toogle";
 import { ScrollArea } from "../ui/scroll-area";
 import { UserButton } from "@clerk/nextjs";
 
@@ -29,7 +29,7 @@ export const NavigationSiderbar = async () => {
       <NavigationAction />
       <Separator className="h-[2px] bg-zinc-300 dark:bg-zinc-700 rounded-md w-10 mx-auto"></Separator>
       <ScrollArea className="flex-1 w-full">
-        {servers.map((server) => 
+        {servers.map((server) => (
           <div key={server.id} className="mb-4">
             <NavigationItem
               id={server.id}
@@ -37,15 +37,18 @@ export const NavigationSiderbar = async () => {
               name={server.name}
             />
           </div>
-        )}
+        ))}
       </ScrollArea>
       <div className="pb-3 mt-auto flex  items-center flex-col gap-y-4">
-        <ModeToggle/>
-        <UserButton afterSignOutUrl="/" appearance={{
-          elements:{
-            avatarBox:"h-[48plx] w-[48px]"
-          }
-        }} />
+        <ModeToggle />
+        <UserButton
+          afterSignOutUrl="/"
+          appearance={{
+            elements: {
+              avatarBox: "h-[48plx] w-[48px]",
+            },
+          }}
+        />
       </div>
     </div>
   );
