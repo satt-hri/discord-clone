@@ -3,12 +3,13 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
 
 import { useModal } from "@/hooks/user-modal-store";
+import { Label } from "@/components/ui/label";
+import { Input } from "../ui/input";
 
 export const InviteModal = () => {
 
@@ -19,14 +20,17 @@ export const InviteModal = () => {
       <DialogContent className="bg-white text-black p-0 overflow-hidden">
         <DialogHeader className="pt-8 px-6">
           <DialogTitle className="text-2xl text-center font-bold">
-            Customize your server
+            Invite Friends
           </DialogTitle>
-          <DialogDescription className="text-center text-zinc-500">
-            Give your server a persionality with a name and an image. You can
-            always change it later
-          </DialogDescription>
         </DialogHeader>
-        Invite Modal
+        <div className="p-6">
+          <Label className="uppercase text-xs font-bold text-zinc-500 dark:text-secondary/70">
+            Server invite link
+          </Label>
+          <div className="flex items-center justify-center mt-2 gap-x-2">
+            <Input className="bg-zinc-300/50"></Input>
+          </div>
+        </div>
       </DialogContent>
     </Dialog>
   );
