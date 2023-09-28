@@ -3,12 +3,6 @@ import { MemberRole } from "@prisma/client";
 import { ServerWithMembersWithProfiles } from "@/types";
 
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
-import {
   ChevronDown,
   LogOut,
   PlusCircle,
@@ -17,7 +11,13 @@ import {
   UserPlus,
   Users,
 } from "lucide-react";
-import { DropdownMenuItem } from "../ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+  DropdownMenuItem,
+} from "@/components/ui/dropdown-menu";
 import { useModal } from "@/hooks/user-modal-store";
 
 interface ServerHeaderProps {
@@ -50,13 +50,19 @@ const ServerHeader = ({ server, role }: ServerHeaderProps) => {
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem onClick={()=>onOpen("edit",{server})} className="px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem
+            onClick={() => onOpen("edit", { server })}
+            className="px-3 py-2 text-sm cursor-pointer"
+          >
             Server Settings
             <Settings className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
         )}
         {isAdmin && (
-          <DropdownMenuItem className="px-3 py-2 text-sm cursor-pointer">
+          <DropdownMenuItem
+            onClick={() => onOpen("members", { server })}
+            className="px-3 py-2 text-sm cursor-pointer"
+          >
             Manage Members <Users className="ml-auto h-4 w-4" />
           </DropdownMenuItem>
         )}

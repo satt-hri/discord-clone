@@ -5,7 +5,7 @@ import { NavigationAction } from "@/components/navigation/navigation-action";
 import { NavigationItem } from "@/components/navigation/navigation-item";
 import { Separator } from "@/components/ui/separator";
 import { ModeToggle } from "@/components/mode-toogle";
-import { ScrollArea } from "../ui/scroll-area";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { UserButton } from "@clerk/nextjs";
 
 export const NavigationSiderbar = async () => {

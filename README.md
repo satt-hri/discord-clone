@@ -45,3 +45,6 @@ GRANT ALL PRIVILEGES ON `discord`.* TO `prisma_user`@`localhost`
 
    ` npm install zustand # or yarn add zustand or pnpm add zustand `
     [ドイツ](https://github.com/pmndrs/zustand)
+
+# manage members
+  ` npm  i  query-string `
