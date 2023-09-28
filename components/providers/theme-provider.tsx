@@ -4,7 +4,6 @@ import { type ThemeProviderProps } from "next-themes/dist/types";
 import { useEffect, useState } from "react";
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
-  
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
