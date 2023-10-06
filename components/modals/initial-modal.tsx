@@ -38,6 +38,7 @@ const formSchema = z.object({
 
 export const InitialModal = () => {
   const [isClient, setIsClient] = useState(false);
+  const router =  useRouter();
 
   useEffect(() => {
     setIsClient(true);
@@ -56,7 +57,7 @@ export const InitialModal = () => {
   }
 
   const isLoading = form.formState.isSubmitting;
-  const router =  useRouter();
+
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
