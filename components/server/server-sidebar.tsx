@@ -128,7 +128,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
           <div className="mb-2">
             <ServerSection
               sectionType="channels"
-              channleType={ChannelType.TEXT}
+              channelType={ChannelType.TEXT}
               role={role}
               label="Text Channels"
             />
@@ -148,7 +148,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
           <div className="mb-2">
             <ServerSection
               sectionType="channels"
-              channleType={ChannelType.AUDIO}
+              channelType={ChannelType.AUDIO}
               role={role}
               label="Voice Channels"
             />
@@ -168,7 +168,7 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
           <div className="mb-2">
             <ServerSection
               sectionType="channels"
-              channleType={ChannelType.VIDEO}
+              channelType={ChannelType.VIDEO}
               role={role}
               label="Video Channels"
             />
@@ -186,10 +186,15 @@ const ServerSidebar = async ({ serverId }: ServerSidebarProps) => {
         )}
         {!!members.length && (
           <div className="mb-2">
-            <ServerSection sectionType="members" role={role} label="Members" server={server} />
+            <ServerSection
+              sectionType="members"
+              role={role}
+              label="Members"
+              server={server}
+            />
             <div className="space-y-[2px]">
               {members.map((member) => (
-                <ServerMember />
+                <ServerMember member={member} server={server} />
               ))}
             </div>
           </div>
