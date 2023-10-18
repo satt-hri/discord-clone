@@ -1,3 +1,4 @@
+"use client"
 import { Hash, Menu } from "lucide-react";
 import { MobileToggle } from "@/components/mobile-toggle";
 import UserAvatar from "../user-avatar";
