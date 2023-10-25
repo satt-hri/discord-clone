@@ -3,7 +3,7 @@ import { currentProfile } from "@/lib/current-profile";
 import { db } from "@/lib/db";
 import { Message } from "@prisma/client";
 import { NextResponse } from "next/server"
-const MESSAGES_BATCH = 20;
+const MESSAGES_BATCH = 2;
 
 export async function GET(request: Request) {
     try {
@@ -20,48 +20,47 @@ export async function GET(request: Request) {
         }
 
         let messages: Message[] = []
-
+        
         if (cursor) {
             messages = await db.message.findMany({
                 take: MESSAGES_BATCH,
                 skip: 1,
-                // cursor: {
-                //     id: cursor
-                // },
+                cursor: {
+                    id: cursor,
+                },
                 where: {
-                    channelId
+                    channelId,
                 },
                 include: {
                     member: {
                         include: {
-                            profile: true
+                            profile: true,
                         }
                     }
                 },
                 orderBy: {
-                    content: "desc",
+                    createdAt: "desc",
                 }
             })
-            //console.log(messages);
         } else {
             messages = await db.message.findMany({
                 take: MESSAGES_BATCH,
                 where: {
-                    channelId
+                    channelId,
                 },
                 include: {
                     member: {
                         include: {
-                            profile: true
+                            profile: true,
                         }
                     }
                 },
                 orderBy: {
-                    content: "desc",
+                    createdAt: "desc",
                 }
-            })
-
+            });
         }
+
         let nextCursor = null;
         if (messages.length === MESSAGES_BATCH) {
             nextCursor = messages[MESSAGES_BATCH - 1].id
