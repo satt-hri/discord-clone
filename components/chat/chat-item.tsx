@@ -1,3 +1,5 @@
+"use client";
+
 import { Member, MemberRole, Profile } from "@prisma/client";
 import UserAvatar from "@/components/user-avatar";
 import { ActionTooltip } from "@/components/action-tooltip";
@@ -77,7 +79,7 @@ const ChatItem = ({
         query:socketQuery
       })
       
-      await axios.get(url)
+      await axios.patch(url,values)
       form.reset();
       setIsEditing(false);
     } catch (error) {
