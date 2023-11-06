@@ -1,3 +1,4 @@
+"use client"
 import { Hash } from "lucide-react";
 
 interface ChatWelcomeProps {
