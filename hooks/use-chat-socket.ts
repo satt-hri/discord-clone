@@ -23,7 +23,6 @@ const useChatSocket = ({ addKey, queryKey, updateKey }: ChatSocketProps) => {
             return;
         }
         socket.on(updateKey, (message: MessageWithMemberWithProfile) => {
-            debugger;
             queryClient.setQueryData([queryKey], (oldData:any) => {
                 if (!oldData || !oldData.pages || oldData.pages.length === 0) {
                     return oldData
@@ -48,7 +47,6 @@ const useChatSocket = ({ addKey, queryKey, updateKey }: ChatSocketProps) => {
             
         })
         socket.on(addKey, (message: MessageWithMemberWithProfile) => {
-            debugger;
             queryClient.setQueryData([queryKey],(oldData:any)=>{
                 if (!oldData || !oldData.pages || oldData.pages.length ===0) {
                     return {

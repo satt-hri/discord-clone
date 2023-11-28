@@ -1,4 +1,3 @@
-import { Fascinate } from "next/font/google";
 import { useEffect, useState } from "react";
 
 type ChatScrollProps = {
@@ -10,7 +9,12 @@ type ChatScrollProps = {
 }
 
 
-const useChatScroll = ({ chatRef, bottomRef, shouldLoadMore, loadMore, count }: ChatScrollProps) => {
+const useChatScroll = ({
+    chatRef,
+    bottomRef,
+    shouldLoadMore,
+    loadMore,
+    count }: ChatScrollProps) => {
     const [hasInitialized, setHasInitialized] = useState(false)
 
     useEffect(() => {
@@ -20,7 +24,6 @@ const useChatScroll = ({ chatRef, bottomRef, shouldLoadMore, loadMore, count }: 
             if (scrollTop === 0 && shouldLoadMore) {
                 loadMore()
             }
-
         }
         topDiv?.addEventListener("scroll", handleScroll)
 
@@ -28,7 +31,7 @@ const useChatScroll = ({ chatRef, bottomRef, shouldLoadMore, loadMore, count }: 
             topDiv?.removeEventListener("scroll", handleScroll)
         }
 
-    }, [loadMore(), chatRef, shouldLoadMore])
+    }, [loadMore, chatRef, shouldLoadMore])
 
 
     useEffect(() => {
@@ -50,7 +53,7 @@ const useChatScroll = ({ chatRef, bottomRef, shouldLoadMore, loadMore, count }: 
                 bottomDiv?.scrollIntoView({ behavior: "smooth" })
             }, 100);
         }
-    }, [bottomRef,chatRef,count,hasInitialized])
+    }, [bottomRef, chatRef, count, hasInitialized])
 
 }
 

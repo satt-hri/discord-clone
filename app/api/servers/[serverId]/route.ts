@@ -45,7 +45,7 @@ export async function DELETE(request:Request,{params}:{params:{serverId:string}}
         if(!params.serverId){
             return new  NextResponse("ServerId  is  Missing",{status:400})
         }
-        const  server  = db.server.delete({
+        const  server  = await db.server.delete({
             where:{
                 id:params.serverId,
                 profileId:profile.id
